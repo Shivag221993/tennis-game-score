@@ -18,4 +18,25 @@ describe("TennisGame scoring", () => {
       screen.getByText(`${SCORE_NAMES[1]} - ${SCORE_NAMES[0]}`),
     ).toBeInTheDocument();
   });
+
+  it("player two scores twice", () => {
+    render(<TennisGame />);
+    fireEvent.click(screen.getByText(MESSAGES.BUTTON_P2));
+    fireEvent.click(screen.getByText(MESSAGES.BUTTON_P2));
+    expect(
+      screen.getByText(`${SCORE_NAMES[0]} - ${SCORE_NAMES[2]}`),
+    ).toBeInTheDocument();
+  });
+
+  it("deuce situation at 40-40", () => {
+    render(<TennisGame />);
+    const p1 = screen.getByText(MESSAGES.BUTTON_P1);
+    const p2 = screen.getByText(MESSAGES.BUTTON_P2);
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(p1);
+      fireEvent.click(p2);
+    }
+    expect(screen.getByText(MESSAGES.DEUCE)).toBeInTheDocument();
+  });
 });
