@@ -39,4 +39,49 @@ describe("TennisGame scoring", () => {
     }
     expect(screen.getByText(MESSAGES.DEUCE)).toBeInTheDocument();
   });
+
+  it("advantage situation", () => {
+    render(<TennisGame />);
+    const p1 = screen.getByText(MESSAGES.BUTTON_P1);
+    const p2 = screen.getByText(MESSAGES.BUTTON_P2);
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(p1);
+      fireEvent.click(p2);
+    }
+    fireEvent.click(p1);
+    expect(screen.getByText(MESSAGES.ADV_P1)).toBeInTheDocument();
+  });
+
+  it("player wins after advantage", () => {
+    render(<TennisGame />);
+    const p1 = screen.getByText(MESSAGES.BUTTON_P1);
+    const p2 = screen.getByText(MESSAGES.BUTTON_P2);
+
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(p1);
+      fireEvent.click(p2);
+    }
+    fireEvent.click(p1);
+    fireEvent.click(p1);
+    expect(screen.getByText(MESSAGES.WIN_P1)).toBeInTheDocument();
+  });
+
+  it("reset button appears after win", () => {
+    render(<TennisGame />);
+    const p1 = screen.getByText(MESSAGES.BUTTON_P1);
+    for (let i = 0; i < 4; i++) fireEvent.click(p1);
+    expect(screen.getByText(MESSAGES.WIN_P1)).toBeInTheDocument();
+    expect(screen.getByText(MESSAGES.RESET)).toBeInTheDocument();
+  });
+
+  it("reset button restores initial state", () => {
+    render(<TennisGame />);
+    const p1 = screen.getByText(MESSAGES.BUTTON_P1);
+    for (let i = 0; i < 4; i++) fireEvent.click(p1);
+    fireEvent.click(screen.getByText(MESSAGES.RESET));
+    expect(
+      screen.getByText(`${SCORE_NAMES[0]} - ${SCORE_NAMES[0]}`),
+    ).toBeInTheDocument();
+  });
 });
