@@ -1,16 +1,29 @@
-# React + Vite
+About this Kata
+This short and simple Kata should be performed using Test Driven Development (TDD).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It is about implementing a simple tennis game. It is inspired by Wii tennis, where they have simplified tennis, so each set is one game.
 
-Currently, two official plugins are available:
+Rules
+The scoring system is rather simple:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Each player can have either of these points in one game 0 15 30 40
 
-## React Compiler
+If you have 40 and you win the ball you win the game, however there are special rules.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+If both have 40 the players are deuce.
 
-## Expanding the ESLint configuration
+a. If the game is in deuce, the winner of a ball will have advantage and game ball.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+b. If the player with advantage wins the ball he wins the game
+
+c. If the player without advantage wins they are back at deuce.
+
+===== Alternate description of the rules per Wikipedia ( http://en.wikipedia.org/wiki/Tennis#Scoring ):
+
+A game is won by the first player to have won at least four points in total and at least two points more than the opponent.
+
+The running score of each game is described in a manner peculiar to tennis: scores from zero to three points are described as “love”, “fifteen”, “thirty”, and “forty” respectively.
+
+If at least three points have been scored by each player, and the scores are equal, the score is “deuce”.
+
+If at least three points have been scored by each side and a player has one more point than his opponent, the score of the game is “advantage” for the player in the lead.
